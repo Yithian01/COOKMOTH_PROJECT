@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="#ceeeec"
     android:padding="8dp"
     >
 
@@ -17,7 +16,7 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/image"
         android:layout_toRightOf="@+id/image"
@@ -27,52 +26,48 @@
 
     <TextView
         android:id="@+id/viewCnt"
-        android:layout_width="wrap_content"
+        android:layout_width="85dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="109dp"
-        android:layout_marginBottom="14dp"
-        android:text="TextView" />
+        android:layout_below="@+id/title"
+        android:layout_toRightOf="@+id/viewImg"
+        android:layout_marginTop="10dip"
+        android:textSize="15dip"
+        android:text="110" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/thumbCnt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="128dp"
-        android:layout_marginBottom="72dp"
-        android:text="TextView" />
+        android:layout_below="@id/title"
+        android:layout_toRightOf="@id/thumbImg"
+        android:layout_marginTop="10dip"
+        android:textSize="14dip"
+        android:text="110" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="196dp"
-        android:layout_height="316dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="137dp"
+        android:id="@+id/thumbImg"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/title"
+        android:layout_toRightOf="@id/viewCnt"
+        android:layout_marginTop="10dip"
+
         app:srcCompat="@drawable/thumbup" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="196dp"
-        android:layout_height="163dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="517dp"
-        android:layout_marginEnd="107dp"
+        android:id="@+id/viewImg"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/title"
+        android:layout_toRightOf="@+id/image"
         app:srcCompat="@drawable/watching" />
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="191dp"
-        android:layout_height="317dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="396dp"
-        android:layout_marginEnd="60dp"
+        android:id="@+id/heartImg"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_toRightOf="@id/title"
         app:srcCompat="@drawable/heart01" />
 
 

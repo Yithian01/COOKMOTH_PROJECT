@@ -1,6 +1,7 @@
 package com.example.cookmoth_project;
 
 import android.app.Activity;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -27,11 +29,11 @@ import com.example.cookmoth_project.databinding.ActivityMainBinding;
 
 import org.w3c.dom.Text;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-
-
+    TextView dropMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,37 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        dropMenu = findViewById(R.id.dropdown_menu);
+
+        dropMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(MainActivity.this, v);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.searchView){
+
+
+                            return true;
+                        } else if (item.getItemId() == R.id.searchLike) {
+
+                            return true;
+                        }else if (item.getItemId() == R.id.isMyLike){
+
+
+                            return true;
+                        }
+
+                        return false;
+                    }
+                });
+                popupMenu.show(); // 팝업 메뉴 표시
+            }
+        });
 
     }
 

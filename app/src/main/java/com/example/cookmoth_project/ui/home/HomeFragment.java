@@ -72,6 +72,7 @@ public class HomeFragment extends Fragment {
             "32",
             "66"
     };
+
     private boolean[] isLike = {
             false,
             false,
@@ -84,7 +85,6 @@ public class HomeFragment extends Fragment {
             false,
             false
     };
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,

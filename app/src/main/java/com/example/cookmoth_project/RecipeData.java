@@ -10,6 +10,8 @@ public class RecipeData {
     private static List<String> db_THUMB_COUNTERS = new ArrayList<>();
     private static List<Boolean> db_IS_LIKES = new ArrayList<>();
 
+
+
     static {
         db_IMAGES.add(R.drawable.pic01);
         db_IMAGES.add(R.drawable.pic02);
@@ -75,6 +77,29 @@ public class RecipeData {
             }
         }
     }
+
+    // 좋아요 제거 메서드
+    public static void unlikeRecipe(String title) {
+        int index = db_TITLES.indexOf(title);
+        if (index != -1) {
+            db_IS_LIKES.set(index, false);
+           
+        }
+    }
+
+    // 데이터 삭제 메서드
+    public static void removeRecipe(String title) {
+        int index = db_TITLES.indexOf(title);
+        if (index != -1) {
+            db_IMAGES.remove(index);
+            db_TITLES.remove(index);
+            db_VIEW_COUNTERS.remove(index);
+            db_THUMB_COUNTERS.remove(index);
+            db_IS_LIKES.remove(index);
+
+        }
+    }
+
     public static void likeRecipe(Integer image, String title, String viewCounter, String thumbCounter, boolean isLike) {
         for(int i =0; i < db_TITLES.size(); i++){
             if(db_TITLES.get(i).equals(title)){
@@ -83,21 +108,8 @@ public class RecipeData {
         }
     }
 
-    // 데이터 삭제 메서드
-    public static void unlikeRecipe(String title) {
-        int index = db_TITLES.indexOf(title);
-        if (index != -1) {
-            db_IS_LIKES.set(index, false);
-        }
-    }
 
-    // 데이터 삭제 메서드
-    public static void removeRecipe(String title) {
-        int index = db_TITLES.indexOf(title);
-        if (index != -1) {
-            db_IS_LIKES.set(index, false);
-        }
-    }
+
 
 
 

@@ -42,6 +42,7 @@
             android:id="@+id/icon_search"
             android:layout_width="38dp"
             android:layout_height="38dp"
+            android:layout_marginRight="10dp"
             android:src="@drawable/magni"
             android:layout_gravity="end"/>
 

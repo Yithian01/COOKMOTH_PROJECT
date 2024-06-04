@@ -131,18 +131,5 @@ public class DashboardFragment extends Fragment {
 
             return rowView;
         }
-
-        private int getActualPosition(int filteredPosition) {
-            int count = -1;
-            for (int i = 0; i < RecipeData.getIsLikes().size(); i++) {
-                if (RecipeData.getIsLikes().get(i)) {
-                    count++;
-                }
-                if (count == filteredPosition) {
-                    return i;
-                }
-            }
-            return -1; // This should never happen
-        }
     }
 }

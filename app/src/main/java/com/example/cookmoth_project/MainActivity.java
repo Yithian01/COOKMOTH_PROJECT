@@ -70,14 +70,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         if (item.getItemId() == R.id.searchView){
-
-
+                            
                             return true;
                         } else if (item.getItemId() == R.id.searchLike) {
 
                             return true;
                         }else if (item.getItemId() == R.id.isMyLike){
-
 
                             return true;
                         }

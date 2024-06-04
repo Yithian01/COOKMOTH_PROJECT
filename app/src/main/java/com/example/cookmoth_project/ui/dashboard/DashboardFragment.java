@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.Fragment; // androidx 패키지 사용
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cookmoth_project.R;
@@ -31,7 +31,7 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+                new ViewModelProvider(requireActivity()).get(DashboardViewModel.class);
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -55,7 +55,7 @@ public class DashboardFragment extends Fragment {
             }
         }
 
-        adapter = new DashboardListAdapter(getActivity(), filteredImages, filteredTitles, filteredViewCounters, filteredThumbCounters, filteredIsLikes);
+        adapter = new DashboardListAdapter(requireActivity(), filteredImages, filteredTitles, filteredViewCounters, filteredThumbCounters, filteredIsLikes);
         list.setAdapter(adapter);
 
         return root;
@@ -113,8 +113,7 @@ public class DashboardFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     // RecipeData에서 데이터 변경
-                    int actualPosition = getActualPosition(position);
-                    RecipeData.removeRecipe(String.valueOf(actualPosition));
+                    RecipeData.unlikeRecipe(titles.get(position));
 
                     // 어댑터에서 데이터 제거
                     titles.remove(position);
@@ -123,7 +122,7 @@ public class DashboardFragment extends Fragment {
                     thumbCounters.remove(position);
                     isLikes.remove(position);
 
-                    Toast.makeText(getActivity(), "즐겨찾기에서 제거되었습니다!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "즐겨찾기에서 제거되었습니다!!", Toast.LENGTH_SHORT).show();
 
                     // 어댑터에 데이터 변경 알림
                     notifyDataSetChanged();

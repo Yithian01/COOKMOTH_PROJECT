@@ -100,10 +100,10 @@ public class HomeFragment extends Fragment {
                     boolean currentIsLike = isLikes.get(position);
                     isLikes.set(position, !currentIsLike);
                     if (!currentIsLike) {
-                        RecipeData.addRecipe(images.get(position), titles.get(position), viewCounters.get(position), thumbCounters.get(position), true);
+                        RecipeData.likeRecipe(images.get(position), titles.get(position), viewCounters.get(position), thumbCounters.get(position), true);
                         Toast.makeText(getActivity(), "즐겨찾기에 추가되었습니다!!", Toast.LENGTH_SHORT).show();
                     } else {
-                        RecipeData.removeRecipe(titles.get(position));
+                        RecipeData.unlikeRecipe(titles.get(position));
                         Toast.makeText(getActivity(), "즐겨찾기에 제거되었습니다!!", Toast.LENGTH_SHORT).show();
                     }
 
@@ -111,6 +111,9 @@ public class HomeFragment extends Fragment {
                     heartImg.setImageResource(!currentIsLike ? R.drawable.heart02 : R.drawable.heart01);
                 }
             });
+
+
+            notifyDataSetChanged();
 
             return rowView;
         }

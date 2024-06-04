@@ -16,7 +16,6 @@
         app:titleTextColor="@android:color/white"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <!-- 중앙에 "레시피 게시판" 텍스트 -->
         <TextView
             android:id="@+id/dropdown_menu"

@@ -75,6 +75,21 @@ public class RecipeData {
             }
         }
     }
+    public static void likeRecipe(Integer image, String title, String viewCounter, String thumbCounter, boolean isLike) {
+        for(int i =0; i < db_TITLES.size(); i++){
+            if(db_TITLES.get(i).equals(title)){
+                db_IS_LIKES.set(i, true);
+            }
+        }
+    }
+
+    // 데이터 삭제 메서드
+    public static void unlikeRecipe(String title) {
+        int index = db_TITLES.indexOf(title);
+        if (index != -1) {
+            db_IS_LIKES.set(index, false);
+        }
+    }
 
     // 데이터 삭제 메서드
     public static void removeRecipe(String title) {
@@ -83,6 +98,8 @@ public class RecipeData {
             db_IS_LIKES.set(index, false);
         }
     }
+
+
 
     // 데이터 접근 메서드
     public static List<Integer> getImages() {

@@ -134,4 +134,14 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+
+    // ListView 업데이트 메소드
+    public void updateListView() {
+        Toast.makeText(getActivity(), "정렬 되었습니다!", Toast.LENGTH_SHORT).show();
+        adapter.notifyDataSetChanged();
+    }
+
+
+
 }

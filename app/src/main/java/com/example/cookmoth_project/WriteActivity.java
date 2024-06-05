@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,8 @@ public class WriteActivity extends AppCompatActivity {
 
     private LinearLayout linearLayout;
     private int stepCounter = 1;
+
+    private ImageView back_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,18 @@ public class WriteActivity extends AppCompatActivity {
         Button submitButton = findViewById(R.id.button);
         Button buttonAddStep = findViewById(R.id.button_add_step);
 
+
+        back_icon = (ImageView) findViewById(R.id.back_icon);
+
+        back_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,8 +54,7 @@ public class WriteActivity extends AppCompatActivity {
 
         buttonAddStep.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                addStep();
+            public void onClick(View v) {addStep();
             }
         });
     }
@@ -70,6 +84,7 @@ public class WriteActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 480 // 적절한 크기로 설정
         ));
+
         newImageButton.setImageResource(R.drawable.ic_add_photo); // 아이콘 설정
         newImageButton.setContentDescription("사진 추가");
 

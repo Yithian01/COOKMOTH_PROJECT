@@ -25,7 +25,7 @@ public class RecipeData {
         db_IMAGES.add(R.drawable.pic09);
         db_IMAGES.add(R.drawable.pic10);
 
-        db_TITLES.add("엄마손맛 계란말이");
+        db_TITLES.add("mom엄마손맛 계란말이");
         db_TITLES.add("환상의 닭날개구이 레시피");
         db_TITLES.add("금요일은 매콤한 닭볽음탕!!");
         db_TITLES.add("술한잔에는 핵붉닭볶음");

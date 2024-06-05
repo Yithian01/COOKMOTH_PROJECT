@@ -21,6 +21,17 @@
         app:layout_constraintVertical_bias="0.0"
         app:titleTextColor="@android:color/white">
 
+
+        <!-- 오른쪽에 뒤로가기 아이콘 -->
+        <ImageView
+            android:id="@+id/back_icon"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/back_icon"
+            android:layout_gravity="start"/>
+
+
         <!-- 중앙에 "글 작성" 텍스트 -->
         <TextView
             android:id="@+id/text_title"
@@ -75,6 +86,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="65sp"
                 android:text="눌러서 순서 추가" />
+
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="재료 추가"
+                android:textSize="18sp" />
 
 
             <LinearLayout

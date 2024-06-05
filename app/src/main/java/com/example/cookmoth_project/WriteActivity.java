@@ -92,6 +92,7 @@ public class WriteActivity extends AppCompatActivity {
                 480 // 적절한 크기로 설정
         ));
 
+
         newImageButton.setImageResource(R.drawable.ic_add_photo); // 아이콘 설정
         newImageButton.setContentDescription("사진 추가");
 

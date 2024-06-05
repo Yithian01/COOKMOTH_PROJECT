@@ -7,7 +7,6 @@
     tools:context=".WriteActivity">
 
     <!-- 사용자 지정 툴바 추가 -->
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/customToolbar"
         android:layout_width="match_parent"

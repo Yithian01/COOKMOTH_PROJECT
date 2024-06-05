@@ -1,5 +1,7 @@
 package com.example.cookmoth_project.ui.dashboard;
 
+import static com.example.cookmoth_project.RecipeData.my_db;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,8 +18,10 @@ import androidx.fragment.app.Fragment; // androidx 패키지 사용
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cookmoth_project.R;
+import com.example.cookmoth_project.RECIPEDTO;
 import com.example.cookmoth_project.RecipeData;
 import com.example.cookmoth_project.databinding.FragmentDashboardBinding;
+import com.example.cookmoth_project.ui.home.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +30,8 @@ public class DashboardFragment extends Fragment {
 
     private @NonNull FragmentDashboardBinding binding;
     private ListView list;
-    private DashboardListAdapter adapter;
+    private CustomList adapter;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,25 +42,7 @@ public class DashboardFragment extends Fragment {
         View root = binding.getRoot();
 
         list = binding.likeList;
-
-        // 필터링된 데이터 생성
-        List<Integer> filteredImages = new ArrayList<>();
-        List<String> filteredTitles = new ArrayList<>();
-        List<String> filteredViewCounters = new ArrayList<>();
-        List<String> filteredThumbCounters = new ArrayList<>();
-        List<Boolean> filteredIsLikes = new ArrayList<>();
-
-        for (int i = 0; i < RecipeData.getIsLikes().size(); i++) {
-            if (RecipeData.getIsLikes().get(i)) {
-                filteredImages.add(RecipeData.getImages().get(i));
-                filteredTitles.add(RecipeData.getTitles().get(i));
-                filteredViewCounters.add(RecipeData.getViewCounters().get(i));
-                filteredThumbCounters.add(RecipeData.getThumbCounters().get(i));
-                filteredIsLikes.add(RecipeData.getIsLikes().get(i));
-            }
-        }
-
-        adapter = new DashboardListAdapter(requireActivity(), filteredImages, filteredTitles, filteredViewCounters, filteredThumbCounters, filteredIsLikes);
+        adapter = new CustomList(getActivity(),my_db);
         list.setAdapter(adapter);
 
         return root;
@@ -67,27 +54,29 @@ public class DashboardFragment extends Fragment {
         binding = null;
     }
 
-    public class DashboardListAdapter extends ArrayAdapter<String> {
+    public class CustomList extends ArrayAdapter<String> {
 
         private final Activity context;
-        private List<Integer> images;
-        private List<String> titles;
-        private List<String> viewCounters;
-        private List<String> thumbCounters;
-        private List<Boolean> isLikes;
+        private final List<RECIPEDTO> data = new ArrayList<>();
 
-        public DashboardListAdapter(Activity context, List<Integer> images, List<String> titles, List<String> viewCounters, List<String> thumbCounters, List<Boolean> isLikes) {
-            super(context, R.layout.listitem, titles);
+        public CustomList(Activity context, List<RECIPEDTO> data) {
+            super(context, R.layout.listitem );
             this.context = context;
-            this.images = images;
-            this.titles = titles;
-            this.viewCounters = viewCounters;
-            this.thumbCounters = thumbCounters;
-            this.isLikes = isLikes;
+            for (RECIPEDTO i : data){
+                if(i.isIsLike()){
+                    this.data.add(i);
+                }
+            }
         }
 
         @Override
-        public View getView(final int position, View view, ViewGroup parent) {
+        public int getCount() {
+            return this.data.size();
+        }
+
+
+        @Override
+        public View getView(int position, View view, ViewGroup parent) {
             LayoutInflater inflater = context.getLayoutInflater();
             View rowView = inflater.inflate(R.layout.listitem, null, true);
 
@@ -100,36 +89,45 @@ public class DashboardFragment extends Fragment {
             ImageView thumbImg = rowView.findViewById(R.id.thumbImg);
             ImageView heartImg = rowView.findViewById(R.id.heartImg);
 
-            title.setText(titles.get(position));
-            imageView.setImageResource(images.get(position));
-            viewCnt.setText(viewCounters.get(position));
-            thumbCnt.setText(thumbCounters.get(position));
+            title.setText(this.data.get(position).getTitle());
+            imageView.setImageResource(this.data.get(position).getImg());
+            viewCnt.setText(this.data.get(position).getvCnt());
+            thumbCnt.setText(this.data.get(position).gettCnt());
+
+            heartImg.setImageResource(this.data.get(position).isIsLike() ? R.drawable.heart02 : R.drawable.heart01);
+
+
+            //title.setText(titles.get(position));
+            //imageView.setImageResource(images.get(position));
+            //viewCnt.setText(viewCounters.get(position));
+            //thumbCnt.setText(thumbCounters.get(position));
 
             viewImg.setImageResource(R.drawable.watching);
             thumbImg.setImageResource(R.drawable.thumbup);
-            heartImg.setImageResource(R.drawable.heart02);
+            //heartImg.setImageResource(isLikes.get(position) ? R.drawable.heart02 : R.drawable.heart01);
 
             heartImg.setOnClickListener(new View.OnClickListener() {
+                String name = data.get(position).getTitle();
                 @Override
                 public void onClick(View v) {
-                    // RecipeData에서 데이터 변경
-                    RecipeData.unlikeRecipe(titles.get(position));
+                    for (RECIPEDTO i :my_db){
+                        if (i.getTitle().equals(name)){
+                            i.setLike(false);
+                        }
+                    }
 
-                    // 어댑터에서 데이터 제거
-                    titles.remove(position);
-                    images.remove(position);
-                    viewCounters.remove(position);
-                    thumbCounters.remove(position);
-                    isLikes.remove(position);
-
-                    Toast.makeText(context, "즐겨찾기에서 제거되었습니다!!", Toast.LENGTH_SHORT).show();
-
-                    // 어댑터에 데이터 변경 알림
+                    data.remove(position);
+                    Toast.makeText(getActivity(), "즐겨찾기에서 제거 되었습니다!!", Toast.LENGTH_SHORT).show();
                     notifyDataSetChanged();
+
                 }
             });
 
             return rowView;
         }
     }
+
+
+
+
 }

@@ -1,5 +1,7 @@
 package com.example.cookmoth_project.ui.home;
 
+import static com.example.cookmoth_project.RecipeData.my_db;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,9 +19,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cookmoth_project.R;
+import com.example.cookmoth_project.RECIPEDTO;
 import com.example.cookmoth_project.RecipeData;
 import com.example.cookmoth_project.databinding.FragmentHomeBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -38,12 +42,14 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         list = binding.mainList;
-        adapter = new CustomList(getActivity());
+        adapter = new CustomList(getActivity(),my_db);
         list.setAdapter(adapter);
+
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String title = RecipeData.getTitles().get(position);
+                String title = my_db.get(position).getTitle();
                 Toast.makeText(getActivity(), title, Toast.LENGTH_SHORT).show();
             }
         });
@@ -54,21 +60,19 @@ public class HomeFragment extends Fragment {
     public class CustomList extends ArrayAdapter<String> {
 
         private final Activity context;
-        private List<Integer> images;
-        private List<String> titles;
-        private List<String> viewCounters;
-        private List<String> thumbCounters;
-        private List<Boolean> isLikes;
+        private final List<RECIPEDTO> data;
 
-        public CustomList(Activity context) {
-            super(context, R.layout.listitem, RecipeData.getTitles());
+        public CustomList(Activity context, List<RECIPEDTO> data) {
+            super(context, R.layout.listitem );
             this.context = context;
-            this.images = RecipeData.getImages();
-            this.titles = RecipeData.getTitles();
-            this.viewCounters = RecipeData.getViewCounters();
-            this.thumbCounters = RecipeData.getThumbCounters();
-            this.isLikes = RecipeData.getIsLikes();
+            this.data = data;
         }
+
+        @Override
+        public int getCount() {
+            return data.size();
+        }
+
 
         @Override
         public View getView(int position, View view, ViewGroup parent) {
@@ -84,26 +88,32 @@ public class HomeFragment extends Fragment {
             ImageView thumbImg = rowView.findViewById(R.id.thumbImg);
             ImageView heartImg = rowView.findViewById(R.id.heartImg);
 
-            title.setText(titles.get(position));
-            imageView.setImageResource(images.get(position));
-            viewCnt.setText(viewCounters.get(position));
-            thumbCnt.setText(thumbCounters.get(position));
+            title.setText(my_db.get(position).getTitle());
+            imageView.setImageResource(my_db.get(position).getImg());
+            viewCnt.setText(my_db.get(position).getvCnt());
+            thumbCnt.setText(my_db.get(position).gettCnt());
+
+            heartImg.setImageResource(my_db.get(position).isIsLike() ? R.drawable.heart02 : R.drawable.heart01);
+
+
+            //title.setText(titles.get(position));
+            //imageView.setImageResource(images.get(position));
+            //viewCnt.setText(viewCounters.get(position));
+            //thumbCnt.setText(thumbCounters.get(position));
 
             viewImg.setImageResource(R.drawable.watching);
             thumbImg.setImageResource(R.drawable.thumbup);
-            heartImg.setImageResource(isLikes.get(position) ? R.drawable.heart02 : R.drawable.heart01);
+            //heartImg.setImageResource(isLikes.get(position) ? R.drawable.heart02 : R.drawable.heart01);
 
             heartImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // isLike 값을 토글
-                    boolean currentIsLike = isLikes.get(position);
-                    isLikes.set(position, !currentIsLike);
+                    boolean currentIsLike = my_db.get(position).isIsLike();
+                    my_db.get(position).setLike(!currentIsLike);
                     if (!currentIsLike) {
-                        RecipeData.likeRecipe(images.get(position), titles.get(position), viewCounters.get(position), thumbCounters.get(position), true);
                         Toast.makeText(getActivity(), "즐겨찾기에 추가되었습니다!!", Toast.LENGTH_SHORT).show();
                     } else {
-                        RecipeData.unlikeRecipe(titles.get(position));
                         Toast.makeText(getActivity(), "즐겨찾기에 제거되었습니다!!", Toast.LENGTH_SHORT).show();
                     }
 

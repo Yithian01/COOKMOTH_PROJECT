@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeData {
+
+
+    public static List<RECIPEDTO> my_db = new ArrayList<>();
     private static List<Integer> db_IMAGES = new ArrayList<>();
     private static List<String> db_TITLES = new ArrayList<>();
     private static List<String> db_VIEW_COUNTERS = new ArrayList<>();
     private static List<String> db_THUMB_COUNTERS = new ArrayList<>();
     private static List<Boolean> db_IS_LIKES = new ArrayList<>();
-
-
 
     static {
         db_IMAGES.add(R.drawable.pic01);
@@ -67,70 +68,50 @@ public class RecipeData {
         db_IS_LIKES.add(false);
         db_IS_LIKES.add(false);
         db_IS_LIKES.add(false);
+
+        for(int i = 0 ; i < db_IMAGES.size(); i++){
+            my_db.add(new RECIPEDTO(db_IMAGES.get(i), db_TITLES.get(i), db_VIEW_COUNTERS.get(i),
+                    db_THUMB_COUNTERS.get(i), db_IS_LIKES.get(i)));
+        }
+
     }
 
     // 데이터 추가 메서드
     public static void addRecipe(Integer image, String title, String viewCounter, String thumbCounter, boolean isLike) {
-        for(int i =0; i < db_TITLES.size(); i++){
-            if(db_TITLES.get(i).equals(title)){
-                db_IS_LIKES.set(i, true);
-            }
-        }
-    }
-
-    // 좋아요 제거 메서드
-    public static void unlikeRecipe(String title) {
-        int index = db_TITLES.indexOf(title);
-        if (index != -1) {
-            db_IS_LIKES.set(index, false);
-           
-        }
+        my_db.add(new RECIPEDTO(image, title, viewCounter, thumbCounter, isLike));
     }
 
     // 데이터 삭제 메서드
     public static void removeRecipe(String title) {
-        int index = db_TITLES.indexOf(title);
-        if (index != -1) {
-            db_IMAGES.remove(index);
-            db_TITLES.remove(index);
-            db_VIEW_COUNTERS.remove(index);
-            db_THUMB_COUNTERS.remove(index);
-            db_IS_LIKES.remove(index);
+        for( RECIPEDTO i : my_db){
+            if(i.getTitle().equals(title)){
+                my_db.remove(i);
+                return ;
+            }
 
+        }
+
+    }
+
+    // 좋아요 제거 메서드
+    public static void unlikeRecipe(String title) {
+        for (RECIPEDTO i : my_db){
+            if (i.getTitle().equals(title)){
+                i.setLike(false);
+                return ;
+            }
         }
     }
 
     public static void likeRecipe(Integer image, String title, String viewCounter, String thumbCounter, boolean isLike) {
-        for(int i =0; i < db_TITLES.size(); i++){
-            if(db_TITLES.get(i).equals(title)){
-                db_IS_LIKES.set(i, true);
+        for (RECIPEDTO i : my_db){
+            if (i.getTitle().equals(title)){
+                i.setLike(true);
+                return ;
             }
         }
     }
 
 
 
-
-
-
-    // 데이터 접근 메서드
-    public static List<Integer> getImages() {
-        return db_IMAGES;
-    }
-
-    public static List<String> getTitles() {
-        return db_TITLES;
-    }
-
-    public static List<String> getViewCounters() {
-        return db_VIEW_COUNTERS;
-    }
-
-    public static List<String> getThumbCounters() {
-        return db_THUMB_COUNTERS;
-    }
-
-    public static List<Boolean> getIsLikes() {
-        return db_IS_LIKES;
-    }
 }

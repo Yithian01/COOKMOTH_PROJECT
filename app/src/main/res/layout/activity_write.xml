@@ -81,6 +81,7 @@
                 app:layout_constraintVertical_bias="0.082" />
 
             <Button
+                android:layout_marginTop="10dp"
                 android:id="@+id/button_add_step"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

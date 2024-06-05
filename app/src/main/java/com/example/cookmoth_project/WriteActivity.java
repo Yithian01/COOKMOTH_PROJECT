@@ -3,6 +3,7 @@ package com.example.cookmoth_project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -60,6 +61,9 @@ public class WriteActivity extends AppCompatActivity {
     }
 
     private void addStep() {
+
+
+
         // 순서 표시
         TextView stepLabel = new TextView(this);
         stepLabel.setLayoutParams(new LinearLayout.LayoutParams(
@@ -70,10 +74,13 @@ public class WriteActivity extends AppCompatActivity {
 
         // 박스 레이아웃 생성
         LinearLayout stepLayout = new LinearLayout(this);
-        stepLayout.setLayoutParams(new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
-        ));
+        );
+        layoutParams.setMargins(0, 20, 0, 0); // 위쪽에 20dp의 marginTop 추가
+        stepLayout.setLayoutParams(layoutParams);
+
         stepLayout.setOrientation(LinearLayout.VERTICAL);
         stepLayout.setPadding(16, 16, 16, 16);
         stepLayout.setBackgroundResource(R.drawable.box_background); // 박스 배경 (XML에서 정의 필요)
@@ -90,10 +97,12 @@ public class WriteActivity extends AppCompatActivity {
 
         // 새 EditText 추가 (내용)
         EditText newEditTextContent = new EditText(this);
-        newEditTextContent.setLayoutParams(new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
-        ));
+        );
+        newEditTextContent.setLayoutParams(params);
+
         newEditTextContent.setHint("내용을 입력하세요");
         newEditTextContent.setInputType(android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE);
 
@@ -103,7 +112,7 @@ public class WriteActivity extends AppCompatActivity {
         stepLayout.addView(newEditTextContent);
 
         // 박스 레이아웃을 재료 추가 섹션 위에 추가
-        linearLayout.addView(stepLayout, linearLayout.getChildCount() - 3);
+        linearLayout.addView(stepLayout, linearLayout.getChildCount() - 5 );
 
         stepCounter++;
     }

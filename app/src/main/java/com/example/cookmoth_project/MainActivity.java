@@ -24,6 +24,7 @@ import android.widget.Toolbar;
 import com.example.cookmoth_project.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -47,10 +48,14 @@ import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static userDTO user = new userDTO();
+
     private ActivityMainBinding binding;
     TextView dropMenu;
     private HomeFragment hf;
 
+    private TextView textTitle;
+    ImageView searchIcon ;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -75,6 +80,38 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
 
+        searchIcon = (ImageView) findViewById(R.id.icon_search);
+        textTitle = (TextView) findViewById(R.id.text_title);
+        dropMenu = (TextView) findViewById(R.id.dropdown_menu);
+        // DestinationChangedListener 추가
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, Bundle arguments) {
+                if (destination.getId() == R.id.navigation_home) {
+                    textTitle.setText("레시피 게시판");
+                    dropMenu.setVisibility(View.VISIBLE);
+                    searchIcon.setVisibility(View.VISIBLE);
+
+
+                } else if (destination.getId() == R.id.navigation_dashboard) {
+                    textTitle.setText("즐겨찾기");
+                    dropMenu.setVisibility(View.INVISIBLE);
+                    searchIcon.setVisibility(View.INVISIBLE);
+
+
+                } else if (destination.getId() == R.id.navigation_notifications) {
+                    textTitle.setText("My Page");
+                    dropMenu.setVisibility(View.INVISIBLE);
+                    searchIcon.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+        
+        
+        
+        
+        
+        
 
         // 현재 fragment의 adapter를 사용하기 위해 필요
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
@@ -82,9 +119,10 @@ public class MainActivity extends AppCompatActivity {
         hf = (HomeFragment) fragment;
 
 
+        
+
 
         // 드롭다운 이벤트
-        dropMenu = findViewById(R.id.dropdown_menu);
         dropMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         // 검색 아이콘 클릭 이벤트
-        ImageView searchIcon = findViewById(R.id.icon_search);
         searchIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -30,7 +30,6 @@ public class FavoriteFragment extends Fragment {
     private ListView list;
     private CustomList adapter;
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         FavoriteViewModel FavoriteViewModel =
@@ -94,15 +93,8 @@ public class FavoriteFragment extends Fragment {
 
             heartImg.setImageResource(this.data.get(position).isIsLike() ? R.drawable.heart02 : R.drawable.heart01);
 
-
-            //title.setText(titles.get(position));
-            //imageView.setImageResource(images.get(position));
-            //viewCnt.setText(viewCounters.get(position));
-            //thumbCnt.setText(thumbCounters.get(position));
-
             viewImg.setImageResource(R.drawable.watching);
             thumbImg.setImageResource(R.drawable.thumbup);
-            //heartImg.setImageResource(isLikes.get(position) ? R.drawable.heart02 : R.drawable.heart01);
 
             heartImg.setOnClickListener(new View.OnClickListener() {
                 String name = data.get(position).getTitle();

@@ -20,11 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
-
     private ListView list;
     private CustomList adapter;
     private ImageView back_icon;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +32,7 @@ public class SearchActivity extends AppCompatActivity {
         // 액션바 설정
         getSupportActionBar().hide();
 
-
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
-
 
         list = (ListView) findViewById(R.id.searchList);
         adapter = new CustomList(this);

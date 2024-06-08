@@ -62,8 +62,6 @@ public class WriteActivity extends AppCompatActivity {
 
     private void addStep() {
 
-
-
         // 순서 표시
         TextView stepLabel = new TextView(this);
         stepLabel.setLayoutParams(new LinearLayout.LayoutParams(
@@ -103,7 +101,6 @@ public class WriteActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
         newEditTextContent.setLayoutParams(params);
-
         newEditTextContent.setHint("내용을 입력하세요");
         newEditTextContent.setInputType(android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE);
 

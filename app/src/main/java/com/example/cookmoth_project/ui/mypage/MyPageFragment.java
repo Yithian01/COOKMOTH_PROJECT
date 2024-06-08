@@ -23,7 +23,6 @@ import com.example.cookmoth_project.databinding.FragmentMypageBinding;
 
 
 public class MyPageFragment extends Fragment {
-
     private FragmentMypageBinding binding;
     private TextView nickName;
 
@@ -49,9 +48,6 @@ public class MyPageFragment extends Fragment {
         View root = binding.getRoot();
 
         nickName = (TextView) root.findViewById(R.id.nickName);
-
-
-
 
         if (user.getUserID().equals("")) {
             // LoginActivity를 시작

@@ -62,10 +62,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
         // 액션바 숨기기
         getSupportActionBar().hide();
-
 
         // 사용자 지정 툴바를 액션바로 설정
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -124,16 +122,16 @@ public class MainActivity extends AppCompatActivity {
                         if (item.getItemId() == R.id.searchView){
                             sortMyDbByViewCount();
                             if (hf != null) hf.updateListView();
-
                             dropMenu.setText("조회수");
                             return true;
+
                         } else if (item.getItemId() == R.id.searchLike) {
                             sortMyDbByLikeCount();
                             hf.updateListView();
                             if (hf != null) hf.updateListView();
                             dropMenu.setText("좋아요수");
-
                             return true;
+
                         }else if (item.getItemId() == R.id.isMyLike){
                             sortMyDbByIsLike();
                             hf.updateListView();
@@ -141,8 +139,6 @@ public class MainActivity extends AppCompatActivity {
                             dropMenu.setText("저장한 글");
                             return true;
                         }
-
-
                         return false;
                     }
                 });
@@ -193,8 +189,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
     private void sortMyDbByIsLike() {
         Collections.sort(my_db, new Comparator<RECIPEDTO>() {
             @Override

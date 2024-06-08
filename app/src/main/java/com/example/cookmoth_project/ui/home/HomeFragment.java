@@ -26,7 +26,7 @@ import com.example.cookmoth_project.databinding.FragmentHomeBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class    HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private ListView list;
@@ -35,6 +35,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
@@ -73,7 +74,6 @@ public class HomeFragment extends Fragment {
             return data.size();
         }
 
-
         @Override
         public View getView(int position, View view, ViewGroup parent) {
             LayoutInflater inflater = context.getLayoutInflater();
@@ -94,16 +94,8 @@ public class HomeFragment extends Fragment {
             thumbCnt.setText(my_db.get(position).gettCnt());
 
             heartImg.setImageResource(my_db.get(position).isIsLike() ? R.drawable.heart02 : R.drawable.heart01);
-
-
-            //title.setText(titles.get(position));
-            //imageView.setImageResource(images.get(position));
-            //viewCnt.setText(viewCounters.get(position));
-            //thumbCnt.setText(thumbCounters.get(position));
-
             viewImg.setImageResource(R.drawable.watching);
             thumbImg.setImageResource(R.drawable.thumbup);
-            //heartImg.setImageResource(isLikes.get(position) ? R.drawable.heart02 : R.drawable.heart01);
 
             heartImg.setOnClickListener(new View.OnClickListener() {
                 @Override

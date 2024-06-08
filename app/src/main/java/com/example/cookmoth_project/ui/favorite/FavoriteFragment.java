@@ -24,7 +24,7 @@ import com.example.cookmoth_project.databinding.FragmentDashboardBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DashboardFragment extends Fragment {
+public class FavoriteFragment extends Fragment {
 
     private @NonNull FragmentDashboardBinding binding;
     private ListView list;
@@ -33,8 +33,8 @@ public class DashboardFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(requireActivity()).get(DashboardViewModel.class);
+        FavoriteViewModel dashboardViewModel =
+                new ViewModelProvider(requireActivity()).get(FavoriteViewModel.class);
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

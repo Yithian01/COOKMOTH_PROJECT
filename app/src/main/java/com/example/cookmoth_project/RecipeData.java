@@ -5,14 +5,12 @@ import java.util.List;
 
 public class RecipeData {
 
-
     public static List<RECIPEDTO> my_db = new ArrayList<>();
     private static List<Integer> db_IMAGES = new ArrayList<>();
     private static List<String> db_TITLES = new ArrayList<>();
     private static List<String> db_VIEW_COUNTERS = new ArrayList<>();
     private static List<String> db_THUMB_COUNTERS = new ArrayList<>();
     private static List<Boolean> db_IS_LIKES = new ArrayList<>();
-
     static {
         db_IMAGES.add(R.drawable.pic01);
         db_IMAGES.add(R.drawable.pic02);
@@ -88,9 +86,7 @@ public class RecipeData {
                 my_db.remove(i);
                 return ;
             }
-
         }
-
     }
 
     // 좋아요 제거 메서드

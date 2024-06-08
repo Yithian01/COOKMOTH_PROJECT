@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_dash"
-    tools:context=".ui.favorite.DashboardFragment">
+    tools:context=".ui.favorite.FavoriteFragment">
 
     <ListView
         android:id="@+id/likeList"

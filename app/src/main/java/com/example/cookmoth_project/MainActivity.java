@@ -104,20 +104,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        
-        
-        
-        
-        
-        
 
         // 현재 fragment의 adapter를 사용하기 위해 필요
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
         Fragment fragment = navHostFragment.getChildFragmentManager().getPrimaryNavigationFragment();
         hf = (HomeFragment) fragment;
-
-
-        
 
 
         // 드롭다운 이벤트

@@ -15,11 +15,11 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.example.cookmoth_project.ui.favorite.FavoriteFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_favorite" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.cookmoth_project.ui.mypage.MyPageFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_mypage" />
 </navigation>

@@ -19,11 +19,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cookmoth_project.LoginActivity;
 import com.example.cookmoth_project.R;
-import com.example.cookmoth_project.databinding.FragmentNotificationsBinding;
+import com.example.cookmoth_project.databinding.FragmentMypageBinding;
+
 
 public class MyPageFragment extends Fragment {
 
-    private FragmentNotificationsBinding binding;
+    private FragmentMypageBinding binding;
     private TextView nickName;
 
     // ActivityResultLauncher 선언
@@ -41,10 +42,10 @@ public class MyPageFragment extends Fragment {
     );
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        MypageViewModel notificationsViewModel =
+        MypageViewModel mypageViewModel =
                 new ViewModelProvider(this).get(MypageViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentMypageBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         nickName = (TextView) root.findViewById(R.id.nickName);
@@ -59,10 +60,6 @@ public class MyPageFragment extends Fragment {
         } else {
             nickName.setText(user.getNickName());
         }
-
-
-
-
 
 
         return root;

@@ -19,24 +19,24 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cookmoth_project.R;
 import com.example.cookmoth_project.RECIPEDTO;
-import com.example.cookmoth_project.databinding.FragmentDashboardBinding;
+import com.example.cookmoth_project.databinding.FragmentFavoriteBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FavoriteFragment extends Fragment {
 
-    private @NonNull FragmentDashboardBinding binding;
+    private @NonNull FragmentFavoriteBinding binding;
     private ListView list;
     private CustomList adapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        FavoriteViewModel dashboardViewModel =
+        FavoriteViewModel FavoriteViewModel =
                 new ViewModelProvider(requireActivity()).get(FavoriteViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentFavoriteBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         list = binding.likeList;

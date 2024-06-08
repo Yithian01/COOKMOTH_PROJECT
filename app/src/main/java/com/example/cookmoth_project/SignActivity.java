@@ -13,15 +13,11 @@ import android.widget.Toast;
 
 public class SignActivity extends AppCompatActivity {
 
-
     private ImageView back_icon;
     private EditText id;
     private Button id_Btn, nick_Btn, sign_up_btn;
-
     private EditText pwd;
-
     private EditText isPwd;
-
     private EditText nickName;
 
 
@@ -33,8 +29,6 @@ public class SignActivity extends AppCompatActivity {
 
 
         getSupportActionBar().hide();
-
-
         back_icon = (ImageView) findViewById(R.id.back_icon);
 
         back_icon.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +38,6 @@ public class SignActivity extends AppCompatActivity {
             }
         });
 
-
         id = (EditText) findViewById(R.id.edit_text_id);
         id_Btn =(Button) findViewById(R.id.button_check_id);
         pwd =(EditText) findViewById(R.id.edit_text_password);
@@ -53,13 +46,11 @@ public class SignActivity extends AppCompatActivity {
         nick_Btn =(Button) findViewById(R.id.button_check_nickname);
         sign_up_btn =(Button) findViewById(R.id.button_register);
 
-
         id_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "사용할 수 있는 아이디입니다!. ", Toast.LENGTH_SHORT).show();
             }
-
         });
 
         nick_Btn.setOnClickListener(new View.OnClickListener() {
@@ -67,10 +58,7 @@ public class SignActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "사용할 수 있는 닉네임입니다!. ", Toast.LENGTH_SHORT).show();
             }
-
         });
-
-
 
         sign_up_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,11 +71,8 @@ public class SignActivity extends AppCompatActivity {
                     isPwd.setText("");
                     Toast.makeText(getApplicationContext(), "같은 비밀번호를 입력하셔야 합니다.", Toast.LENGTH_SHORT).show();
                 }
-
             }
-
         });
-
-
     }
+
 }

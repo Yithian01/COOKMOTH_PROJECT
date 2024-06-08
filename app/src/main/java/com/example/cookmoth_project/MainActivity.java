@@ -48,12 +48,10 @@ import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static userDTO user = new userDTO();
-
+    public static UserDTO user = new UserDTO();
     private ActivityMainBinding binding;
     TextView dropMenu;
     private HomeFragment hf;
-
     private TextView textTitle;
     ImageView searchIcon ;
 

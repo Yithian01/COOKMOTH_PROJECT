@@ -1,42 +1,24 @@
 package com.example.cookmoth_project;
 
-public class userDTO {
+public class UserDTO {
+    private String userID, password, NickName;
 
-    private String userID;
-
-    private String password;
-
-    private String NickName;
-
-    public userDTO() {
+    public UserDTO() {
         this.userID = "";
         this.password = "";
         this.NickName = "";
     }
-
-    public userDTO(String userID, String password, String nickName) {
-        this.userID = userID;
-        this.password = password;
-        NickName = nickName;
-    }
-
 
     public void signUp(String id, String pwd, String nickName){
         setUserID(id);
         setPassword(pwd);
         setNickName(nickName);
     }
-    public String getUserID() {
-        return userID;
-    }
+    public String getUserID() { return userID; }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
+    public void setUserID(String userID) { this.userID = userID; }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() {return password; }
 
     public void setPassword(String password) {
         this.password = password;

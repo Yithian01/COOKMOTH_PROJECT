@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:circularflow_radiusInDP="3"
-    tools:context=".ui.notifications.NotificationsFragment">
+    tools:context=".ui.mypage.MyPageFragment">
 
 
     <LinearLayout

@@ -1,4 +1,4 @@
-package com.example.cookmoth_project.ui.notifications;
+package com.example.cookmoth_project.ui.mypage;
 
 import static com.example.cookmoth_project.MainActivity.user;
 
@@ -18,12 +18,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cookmoth_project.LoginActivity;
-import com.example.cookmoth_project.MainActivity;
 import com.example.cookmoth_project.R;
-import com.example.cookmoth_project.WriteActivity;
 import com.example.cookmoth_project.databinding.FragmentNotificationsBinding;
 
-public class NotificationsFragment extends Fragment {
+public class MyPageFragment extends Fragment {
 
     private FragmentNotificationsBinding binding;
     private TextView nickName;
@@ -43,8 +41,8 @@ public class NotificationsFragment extends Fragment {
     );
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+        MypageViewModel notificationsViewModel =
+                new ViewModelProvider(this).get(MypageViewModel.class);
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

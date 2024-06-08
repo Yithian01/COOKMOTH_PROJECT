@@ -12,21 +12,14 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class SignActivity extends AppCompatActivity {
-
     private ImageView back_icon;
-    private EditText id;
+    private EditText id, pwd, isPwd, nickName;
     private Button id_Btn, nick_Btn, sign_up_btn;
-    private EditText pwd;
-    private EditText isPwd;
-    private EditText nickName;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
-
 
         getSupportActionBar().hide();
         back_icon = (ImageView) findViewById(R.id.back_icon);
@@ -37,7 +30,6 @@ public class SignActivity extends AppCompatActivity {
                 finish();
             }
         });
-
         id = (EditText) findViewById(R.id.edit_text_id);
         id_Btn =(Button) findViewById(R.id.button_check_id);
         pwd =(EditText) findViewById(R.id.edit_text_password);
@@ -45,7 +37,6 @@ public class SignActivity extends AppCompatActivity {
         nickName =(EditText) findViewById(R.id.edit_text_nickname);
         nick_Btn =(Button) findViewById(R.id.button_check_nickname);
         sign_up_btn =(Button) findViewById(R.id.button_register);
-
         id_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

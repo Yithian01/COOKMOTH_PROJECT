@@ -1,4 +1,4 @@
-package com.example.cookmoth_project.ui.dashboard;
+package com.example.cookmoth_project.ui.favorite;
 
 import static com.example.cookmoth_project.RecipeData.my_db;
 
@@ -19,9 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cookmoth_project.R;
 import com.example.cookmoth_project.RECIPEDTO;
-import com.example.cookmoth_project.RecipeData;
 import com.example.cookmoth_project.databinding.FragmentDashboardBinding;
-import com.example.cookmoth_project.ui.home.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
